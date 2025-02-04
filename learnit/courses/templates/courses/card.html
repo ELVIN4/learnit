@@ -14,7 +14,7 @@
                     </time>
                 </div>
                 <div class="postcard__bar"></div>
-                <div class="postcard__preview-txt">{{ course.description|truncatechars:150 }}</div>
+                <div class="postcard__preview-txt">{{ course.description|truncatewords:25 }}</div>
                 <ul class="postcard__tagbox">
                     <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.author }}</li>
                     <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.lessons_count }} lessons</li>

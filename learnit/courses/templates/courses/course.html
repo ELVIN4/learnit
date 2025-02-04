@@ -1,13 +1,40 @@
 {% extends 'courses/base.html' %}
-
+{% load humanize %}
+{% load custom_tags %}
 
 {% block 'content' %}
-    <p> Кол.во просмотров {{ course.total_views }} | Продолжительность {{ course.total_duration }} | В среднем просмотров {{ course.average_views }} | Кол.во уроков {{ course.lessons_count }}</p>
-    {% for lesson in lessons %}
-        <img src="{{ lesson.thumbnail }}" alt="" height="140px">
-        <a href="{% url 'lesson' course.slug  lesson.order %}">{{ lesson.name }}| {{ lesson.order }}</a>
-        <hr>
-        <br>
+<div class="container mt-4">
+    <h3>{{ course.name }}</h3>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item bg-transparent border-0 text-white">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed bg-warning text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="bi bi-card-text"></i>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {{ course.description|linebreaks }}
+                    <p class="mt-2">
+                        <button type="button" class="btn btn-dark m-1"><i class="bi bi-book-fill"> </i>{{ course.lessons_count }}</button>
+                        <button type="button" class="btn btn-dark m-1"><i class="bi bi-binoculars"> </i>{{ course.total_views|intcomma }}</button>
+                        <button type="button" class="btn btn-dark m-1"><i class="bi bi-stopwatch"> </i>{{ course.total_duration|seconds_to_hours }}h</button>
+                        <button type="button" class="btn btn-dark m-1"><i class="bi bi-calendar"> </i> {{ course.modified_date }}</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
 
-    {% endfor %}
+    <div class="container mt-5">
+        <div class="row text-center justify-content-center">
+            <section class="dark">
+            {% for lesson in lessons %}
+                {% include 'courses/lesson_card.html' with lesson=lesson course=course %}
+            {% endfor %}
+            </section>
+        </div>
+    </div>
 {% endblock %}

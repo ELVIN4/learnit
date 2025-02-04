@@ -34,6 +34,7 @@ class CourseAdminForm(forms.ModelForm):
                 thumbnail=lesson["thumbnail"],
                 views=lesson["views"],
                 video_id=lesson["id"],
+                duration=lesson["duration"],
                 course=instance,
             )
 

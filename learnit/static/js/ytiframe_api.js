@@ -28,12 +28,12 @@ function onPlayerReady(event) {
   }
 }
 
-// Сохраняем текущее время каждые 1 секунду, но не устанавливаем его
+// Сохраняем текущее время каждые 2 секунды, но не устанавливаем его
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
     setInterval(() => {
       var seconds = Math.round(player.getCurrentTime());
       localStorage.setItem(videoId, seconds);
-    }, 1000);
+    }, 2000);
   }
 }

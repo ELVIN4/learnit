@@ -17,3 +17,12 @@ def seconds_to_hours(seconds):
     except Exception as e:
         print(e)
         return None
+    
+@register.filter
+def seconds_to_minutes(seconds):
+    try:
+        hours = seconds // 60
+        return hours
+    except Exception as e:
+        print(e)
+        return None

@@ -4,6 +4,6 @@ db.sqlite3
 /media/     
 /static/   
 .venv/
-.env/
+.env
 .vscode/
 .ruff_cache

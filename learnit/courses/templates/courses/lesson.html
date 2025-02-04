@@ -24,10 +24,14 @@
             </a>
             {% endif %}
           </div>
-          <div class="col text-center">
-            {{ lesson.order }}/{{ lesson.course.lessons_count }} 
-            ({{ lesson.order|percentage:lesson.course.lessons_count }}%)
-          </div>
+            <div class="col text-center">
+              <a href="{% url 'course' lesson.course.slug %}#{{ lesson.video_id }}">
+                <button class="btn btn-transparent text-white"> 
+                      {{ lesson.order }}/{{ lesson.course.lessons_count }} 
+                      ({{ lesson.order|percentage:lesson.course.lessons_count }}%)
+                </button>
+              </a>
+            </div>
           <div class="col-auto">
             {% if lesson.order|add:1 < lesson.course.lessons_count %}
             <a href="{{ lesson.order|add:1 }}">
