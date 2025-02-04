@@ -1,0 +1,29 @@
+{% load custom_tags %}
+
+<section class="dark">
+    <div class="container py-4">
+        <article class="postcard dark yellow">
+            <a class="postcard__img_link" href="{% url 'course' course.slug %}">
+                <img class="postcard__img" src="{{ course.thumbnail }}" alt="Image Title" />
+            </a>
+            <div class="postcard__text">
+                <h1 class="postcard__title blue"><a href="{% url 'course' course.slug %}">{{ course.name }}</a></h1>
+                <div class="postcard__subtitle small">
+                    <time datetime="2020-05-25 12:00:00">
+                        <i class="fas fa-calendar-alt mr-2"></i>{{ course.modified_date }}
+                    </time>
+                </div>
+                <div class="postcard__bar"></div>
+                <div class="postcard__preview-txt">{{ course.description|truncatechars:150 }}</div>
+                <ul class="postcard__tagbox">
+                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.author }}</li>
+                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.lessons_count }} lessons</li>
+                    <li class="tag__item"><i class="fas fa-clock mr-2"></i>{{ course.total_duration|seconds_to_hours }} hours</li>
+                    <li class="tag__item play blue">
+                        <a href="{% url 'course' course.slug %}"><i class="fas fa-play mr-2"></i>Play Episode</a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</section>

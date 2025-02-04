@@ -1,0 +1,14 @@
+{% extends 'courses/base.html' %}
+
+{% block 'content' %}
+
+<h1>{{ category.name }}</h1>
+{% for child_category in child_categories %}
+    {% include 'courses/category_card.html' with category=child_category %}
+{% endfor %}
+
+{% for course in courses %}
+    {% include 'courses/card.html' with course=course %}
+{% endfor %}
+
+{% endblock %}

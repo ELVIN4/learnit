@@ -1,0 +1,72 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #110f16;
+    color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Стили для Navbar */
+.navbar-custom {
+    background-color: #34495e;
+}
+
+.navbar-nav .nav-link {
+    color: #f39c12;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f1c40f;
+}
+
+.navbar-brand {
+    color: #ecf0f1;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* Стили для заголовков */
+.popular-title, .other-title {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-top: 20px;
+}
+
+
+/* Стили для карточек и блоков */
+.card-custom {
+    background-color: #34495e;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-custom:hover {
+    transform: translateY(-10px);
+    background-color: #1abc9c;
+}
+
+.custom-box {
+    height: 150px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Анимации и переходы */
+.card-custom, .custom-box {
+    transition: all 0.3s ease;
+}
+
+

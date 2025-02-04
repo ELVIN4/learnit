@@ -1,0 +1,46 @@
+@media (max-width: 768px) {
+    .ql-toolbar {
+      font-size: 12px;
+    }
+    .ql-editor {
+      min-height: 200px; /* Меньший размер редактора на мобильных */
+    }
+  }
+  
+
+
+.ql-toolbar {
+    background-color: #ffc107;
+    border: none !important;  /* Убираем границу */
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Кастомизация кнопок (например, жирный, курсив и т.д.) */
+.ql-toolbar button {
+color: #333; /* Цвет иконок */
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar button.ql-active {
+color: #007bff; /* Цвет иконок при наведении или при активном состоянии */
+}
+
+/* Цвета дропдаунов */
+.ql-picker {
+color: #333;
+}
+
+.ql-picker-options {
+background-color: #fc0000;
+}
+
+/* Область ввода текста */
+.ql-container,
+.ql-editor {
+    background-color: #42380013 !important;
+    border: none !important;  /* Убираем границу */
+    outline: none !important;
+    box-shadow: none !important;
+  }
+

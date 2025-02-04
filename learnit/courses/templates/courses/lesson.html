@@ -1,0 +1,51 @@
+{% extends 'courses/base.html' %}
+
+{% load static %}
+{% load custom_tags %}
+
+{% block 'content' %}
+    <h3 class="mt-3">{{ lesson.name }}</h3>
+    {% include 'courses/player.html' with videoId=lesson.video_id %}
+
+    <div class="container">
+        <div class="row align-items-center m-3">
+          <div class="col-auto">
+            {% if lesson.order|add:'-1' > 0%}
+              <a href="{{ lesson.order|add:'-1' }}">
+                <button class="btn btn-secondary">
+                  <i class="bi bi-arrow-left"></i> Назад
+                </button>
+              </a>
+            {% else %}
+            <a href="{% url 'course' lesson.course.slug %}">
+              <button class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Выйти
+              </button>
+            </a>
+            {% endif %}
+          </div>
+          <div class="col text-center">
+            {{ lesson.order }}/{{ lesson.course.lessons_count }} 
+            ({{ lesson.order|percentage:lesson.course.lessons_count }}%)
+          </div>
+          <div class="col-auto">
+            {% if lesson.order|add:1 < lesson.course.lessons_count %}
+            <a href="{{ lesson.order|add:1 }}">
+              <button class="btn btn-primary">
+                Вперед <i class="bi bi-arrow-right"></i>
+              </button>
+            </a>
+            {% else %}
+            <a href="{% url 'course' lesson.course.slug %}">
+              <button class="btn btn-primary">
+                Финиш <i class="bi bi-arrow-right"></i>
+              </button>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      
+  
+    {% include 'courses/notepad.html' %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'courses/base.html' %}
+
+
+{% block 'content' %}
+    <p> Кол.во просмотров {{ course.total_views }} | Продолжительность {{ course.total_duration }} | В среднем просмотров {{ course.average_views }} | Кол.во уроков {{ course.lessons_count }}</p>
+    {% for lesson in lessons %}
+        <img src="{{ lesson.thumbnail }}" alt="" height="140px">
+        <a href="{% url 'lesson' course.slug  lesson.order %}">{{ lesson.name }}| {{ lesson.order }}</a>
+        <hr>
+        <br>
+
+    {% endfor %}
+{% endblock %}
