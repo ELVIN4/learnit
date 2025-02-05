@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import MainPage, CategoryPage, CoursePage, LessonPage
+from .views import MainPage, CategoryPage, CoursePage, LessonPage, AuthorPage
 
 urlpatterns = [
     path("", MainPage.as_view(), name="main"),
@@ -11,4 +11,5 @@ urlpatterns = [
         LessonPage.as_view(),
         name="lesson",
     ),
+    path("author/<slug:author_id>", AuthorPage.as_view(), name="author")
 ]

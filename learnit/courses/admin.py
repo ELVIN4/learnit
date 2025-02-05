@@ -20,6 +20,7 @@ class CourseAdmin(admin.ModelAdmin):
         "upload_date",
     )
     search_fields = ["name", "slug", "category__name", "author", "language__name", "is_published"]
+    autocomplete_fields = ['category'] 
     ordering = ["update_date", "upload_date"]
 
     def get_form(self, request, obj = ..., change = ..., **kwargs):

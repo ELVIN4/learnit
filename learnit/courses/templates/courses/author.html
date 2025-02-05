@@ -1,0 +1,17 @@
+{% extends 'courses/base.html' %}
+{% load i18n %}
+
+{% block 'content' %}
+
+<div class="container mt-2">
+    <h1>
+        {% trans 'Courses by:' %} <a href="https://youtube.com/channel/{{ courses.0.author_id }}">{{ courses.0.author }}</a>
+    </h1>
+    <span> 
+        <i class="bi bi-database"></i> {{ courses|length }}
+    </span>
+</div>
+    {% for course in courses %}
+        {% include 'courses/card.html' with course=course author_page=author_page %}
+    {% endfor %}
+{% endblock %}

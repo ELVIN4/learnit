@@ -17,7 +17,12 @@
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{ course.description|truncatewords:25 }}</div>
                 <ul class="postcard__tagbox">
-                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.author }}</li>
+                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.category.name }}</li>
+                    {% if not author_page %}
+                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>
+                        <a href="{% url 'author' course.author_id %}">{{ course.author }}</a> 
+                    </li>
+                    {% endif %}
                     <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.lessons_count }} {% trans "lessons" %}</li>
                     <li class="tag__item"><i class="fas fa-clock mr-2"></i>{{ course.total_duration|seconds_to_hours }}h</li>
                     <li class="tag__item play blue">
