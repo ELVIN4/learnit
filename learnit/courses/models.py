@@ -88,6 +88,7 @@ class Language(models.Model):
     """Языки курсов"""
 
     name = models.CharField(max_length=64)
+    code = models.CharField(max_length=2)
     priority = models.IntegerField(default=0)
     is_published = models.BooleanField(default=True)
 

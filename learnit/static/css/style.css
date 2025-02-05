@@ -70,3 +70,7 @@ body {
 }
 
 
+.dropdown-menu .dropdown-item:hover {
+    background-color: #495057; /* Цвет фона при наведении */
+    color: #ffffff; /* Цвет текста при наведении */
+}

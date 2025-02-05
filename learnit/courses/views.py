@@ -1,13 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Course, Category, Lesson
+from django.utils.translation import get_language
+from .models import Course, Category, Lesson, Language
 
 
 class MainPage(View):
     '''Главная страница курсов'''
     def get(self, request):
-        courses = Course.objects.all()
-        categories = Category.objects.all()
+        current_language_code = get_language()
+        current_language = Language.objects.get(code=current_language_code)
+        
+        courses = Course.objects.filter(language=current_language)
+        categories = Category.objects.filter(language=current_language)
 
         return render(
             request,

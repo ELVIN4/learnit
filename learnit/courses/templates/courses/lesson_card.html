@@ -1,6 +1,6 @@
+{% load i18n %}
 {% load custom_tags %}
 {% load humanize %}
-
 
     <div class="container py-4">
         <article class="postcard dark red" id="{{ lesson.video_id }}">
@@ -9,11 +9,6 @@
             </a>
             <div class="postcard__text">
                 <h1 class="postcard__title blue"><a href="{% url 'lesson' course.slug  lesson.order %}">{{ lesson.name }}</a></h1>
-                <div class="postcard__subtitle small">
-                    <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>{{ course.modified_date }}
-                    </time>
-                </div>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{ course.description|truncatechars:150 }}</div>
                 <ul class="postcard__tagbox">
@@ -21,7 +16,7 @@
                     <li class="tag__item"><i class="bi bi-binoculars"> </i>{{ lesson.views|intcomma }}</li>
                     <li class="tag__item">{{ lesson.duration|seconds_to_minutes }} min</li>
                     <li class="tag__item play blue">
-                        <a href="{% url 'lesson' course.slug  lesson.order %}"><i class="bi bi-play"> </i>Start lesson</a>
+                        <a href="{% url 'lesson' course.slug  lesson.order %}"><i class="bi bi-play"> </i>{% trans "Start lesson" %}</a>
                     </li>
                 </ul>
             </div>

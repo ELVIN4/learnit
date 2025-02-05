@@ -1,4 +1,5 @@
 from django import template
+from courses.models import Course
 
 register = template.Library()
 
@@ -26,3 +27,7 @@ def seconds_to_minutes(seconds):
     except Exception as e:
         print(e)
         return None
+    
+@register.simple_tag
+def count_courses_by_language(language_code):
+    return Course.objects.filter(language__code=language_code).count()
