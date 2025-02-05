@@ -11,22 +11,24 @@
                 <h1 class="postcard__title blue"><a href="{% url 'course' course.slug %}">{{ course.name }}</a></h1>
                 <div class="postcard__subtitle small">
                     <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>{{ course.modified_date }}
+                        <i class="bi bi-calendar"> </i>{{ course.modified_date }}
                     </time>
                 </div>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{ course.description|truncatewords:25 }}</div>
                 <ul class="postcard__tagbox">
-                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.category.name }}</li>
+                    <a href="{% url 'category' course.category.slug %}">
+                        <li class="tag__item"><i class="bi bi-tag"> </i>{{ course.category.name }}</li>
+                    </a>
                     {% if not author_page %}
-                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>
-                        <a href="{% url 'author' course.author_id %}">{{ course.author }}</a> 
+                    <li class="tag__item">
+                        <i class="bi bi-person"> </i><a href="{% url 'author' course.author_id %}">{{ course.author }}</a> 
                     </li>
                     {% endif %}
-                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ course.lessons_count }} {% trans "lessons" %}</li>
-                    <li class="tag__item"><i class="fas fa-clock mr-2"></i>{{ course.total_duration|seconds_to_hours }}h</li>
+                    <li class="tag__item"><i class="bi bi-book"> </i>{{ course.lessons_count }} {% trans "lessons" %}</li>
+                    <li class="tag__item"><i class="bi bi-stopwatch"> </i>{{ course.total_duration|seconds_to_hours }}h</li>
                     <li class="tag__item play blue">
-                        <a href="{% url 'course' course.slug %}"><i class="fas fa-play mr-2"></i>{% trans "Start course" %}</a>
+                        <a href="{% url 'course' course.slug %}"><i class="bi bi-collection-play"> </i>{% trans "Start course" %}</a>
                     </li>
                 </ul>
             </div>

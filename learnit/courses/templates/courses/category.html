@@ -1,12 +1,15 @@
 {% extends 'courses/base.html' %}
 
 {% block 'content' %}
+<div class="container border-bottom border-warning my-4">
+    <h1 class="mb-4">{{ category.name }} | ~{{ courses|length }} <i class="bi bi-database-check"></i></h1>
+</div>
 
-<h1>{{ category.name }}</h1>
-{% for child_category in child_categories %}
-    {% include 'courses/category_card.html' with category=child_category %}
-{% endfor %}
-
+<div class="container">
+    {% for child_category in child_categories %}
+        {% include 'courses/category_card.html' with category=child_category %}
+    {% endfor %}
+</div>
 {% for course in courses %}
     {% include 'courses/card.html' with course=course %}
 {% endfor %}
