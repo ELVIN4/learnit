@@ -18,7 +18,7 @@
                 <div class="postcard__preview-txt">{{ course.description|truncatewords:25 }}</div>
                 <ul class="postcard__tagbox">
                     <a href="{% url 'category' course.category.slug %}">
-                        <li class="tag__item"><i class="bi bi-tag"> </i>{{ course.category.name }}</li>
+                        <li class="tag__item">{{ course.category.name }}</li>
                     </a>
                     {% if not author_page %}
                     <li class="tag__item">

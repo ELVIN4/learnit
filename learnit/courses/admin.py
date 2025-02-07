@@ -19,7 +19,7 @@ class CourseAdmin(admin.ModelAdmin):
         "update_date",
         "upload_date",
     )
-    search_fields = ["name", "slug", "category__name", "author", "language__name", "is_published"]
+    search_fields = ["name", "slug", "category__name", "author", "language__name", "url", "is_published"]
     autocomplete_fields = ['category'] 
     ordering = ["update_date", "upload_date"]
 
@@ -54,7 +54,14 @@ class CourseAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "slug", "priority", "create_date", "language", "is_published")
     search_fields = ("name", "slug", "language__name", "is_published")
+    autocomplete_fields = ['parent_category']
     ordering = ("create_date",)
+    
+    def get_exclude(self, request, obj=None):
+        if not obj:  
+            return ['slug']
+        return []
+
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):

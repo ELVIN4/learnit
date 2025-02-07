@@ -1,4 +1,8 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.utils.text import slugify
+from django.dispatch import receiver
+from unidecode import unidecode
 
 
 class Category(models.Model):
@@ -14,7 +18,7 @@ class Category(models.Model):
     create_date = models.DateTimeField(auto_now=True)
     language = models.ForeignKey("Language", on_delete=models.PROTECT)
     is_published = models.BooleanField(default=True)
-    
+
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
@@ -25,7 +29,7 @@ class Category(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(null=True)
+    slug = models.SlugField(null=True, max_length=300)
     thumbnail = models.URLField(null=True)
     description = models.TextField(null=True)
     url = models.URLField(unique=True)
@@ -98,3 +102,10 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
+
+
+@receiver(pre_save, sender=Category)
+@receiver(pre_save, sender=Course)
+def set_slug(instance, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(unidecode(f"{instance.name}-{instance.language.code}"))

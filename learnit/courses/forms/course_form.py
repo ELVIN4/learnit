@@ -7,7 +7,7 @@ from courses.services.yt_scrapper_v2 import get_playlist_info
 class CourseAdminForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ["category", "url", "slug", "is_published", "priority", "language"]
+        fields = ["category", "url", "is_published", "priority", "language"]
 
     def save(self, commit=True):
         instance = super().save(commit)
@@ -23,7 +23,6 @@ class CourseAdminForm(forms.ModelForm):
         instance.author = course["playlist"]['author']
         instance.author_id = course["playlist"]["author_id"]
         instance.modified_date = datetime.strptime(course["playlist"]["modified_date"], '%Y%m%d')
-        
 
         instance.save()
 

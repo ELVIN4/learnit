@@ -43,7 +43,7 @@
             {% else %}
             <a href="{% url 'course' lesson.course.slug %}">
               <button class="btn btn-primary">
-                Финиш <i class="bi bi-arrow-right"></i>
+                {% trans 'Finish' %} <i class="bi bi-arrow-right"></i>
               </button>
             </a>
             {% endif %}
