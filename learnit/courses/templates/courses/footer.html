@@ -1,0 +1,31 @@
+{% load i18n %}
+
+<footer class="bg-transparent text-white mt-5">
+    <hr>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <h4>{% trans 'About' %}</h4>
+          <p>{% trans "YouTube offers a vast collection of educational courses, but it's not always the most convenient platform for learning. LearnIT is specifically designed to streamline the learning process, making it easier and more efficient. We're constantly looking for ways to improve, so if you have any ideas or suggestions, feel free to share. Your feedback is valuable and helps us enhance the platform to better serve your needs." %}</p>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <h4>{% trans 'Navigation' %}</h4>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'main' %}" class="text-white fw-bold">{% trans 'Home' %}</a></li>
+            <li><a href="#" class="text-white fw-bold">{% trans 'Account' %}</a></li>
+            <li><a href="#" class="text-white fw-bold">{% trans 'Categories' %}</a></li>
+            <li><a href="#" class="text-white fw-bold">{% trans 'History' %}</a></li>
+            <li><a href="#" class="text-white fw-bold">{% trans 'Search courses' %}</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-12 mb-4">
+          <h4>{% trans 'Open source' %}</h4>
+          <p>{% trans 'The project is developed under the MIT License, and the source code is available on' %}</p>
+          <a href="https://github.com/elvin4/learnit" class="text-white fw-bold" target="_blank"><i class="bi bi-github"> </i>GitHub.</a>
+        </div>
+      </div>
+      <div class="text-center py-3">
+        <p>LearnIT 2025</p>
+      </div>
+    </div>
+  </footer>

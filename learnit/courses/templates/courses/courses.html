@@ -1,0 +1,7 @@
+<div class="container mt-2">
+    <div class="row text-center justify-content-center">
+        {% for course in courses %}
+            {% include 'courses/card.html' with course=course %}
+        {% endfor %}
+    </div>
+</div>

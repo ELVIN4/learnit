@@ -10,8 +10,10 @@
         {% include 'courses/category_card.html' with category=child_category %}
     {% endfor %}
 </div>
-{% for course in courses %}
+
+{% include 'courses/courses.html' with courses=courses %}
+<!-- {% for course in courses %}
     {% include 'courses/card.html' with course=course %}
-{% endfor %}
+{% endfor %} -->
 
 {% endblock %}

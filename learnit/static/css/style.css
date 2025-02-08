@@ -1,5 +1,5 @@
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #110f16;
     color: #ffffff;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -29,7 +29,7 @@ body {
 
 /* Стили для заголовков */
 .popular-title, .other-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #2c3e50;
@@ -78,3 +78,55 @@ body {
 .breadcrumb {
     --bs-breadcrumb-divider-color: #ffffff4d,
 }
+
+
+.stat-card {
+    background-color: #242424;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+    background-color: #ffc107;
+    color: #000000;
+}
+.stat-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+}
+.stat-label {
+    font-size: 18px;
+    color: #a0a0a0;
+}
+
+#backToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #ffc107; /* Set a background color */
+    color: rgb(0, 0, 0); /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+  }
+  
+#backToTop:hover {
+    background-color: #ffc107b2; /* Add a dark-grey background on hover */
+  }

@@ -1,18 +1,19 @@
 {% load static %}
-
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnIT Layout</title>
+    <title>{% block 'title' %}LearnIT{% endblock %}</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +22,6 @@
 </header>
 
 {% if breadcrumbs %}
-
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
@@ -37,20 +37,22 @@
         </ol>
     </div>
   </nav>
-  
 {% endif %}
 
+
+
 {% block 'content' %}
-    <!-- Content -->
+    <div id="start_video" video_id="5MgBikgcWnY">
+        {% include 'courses/player.html' with videoId='5MgBikgcWnY' %}
+        <p class="text-center text-secondary">{% trans 'Watch until the end to hide the video' %}</p>
+    </div>
+
     <div class="container">
-        <!-- Popular Section -->
-        <div class="row text-center">
+        <div class="row text-start">
             <div class="col-12">
-                <p class="popular-title text-light">Category</p>
+                <p class="popular-title text-light">{% trans 'Categories' %}</p>
             </div>
         </div>
-
-
         <div class="categories">
             {% for category in categories %}
                 {% if category.parent_category is None %}
@@ -58,34 +60,40 @@
                 {% endif %}       
             {% endfor %}
         </div>
-
-        <!-- Other Section -->
-        <div class="row text-center">
-            <div class="col-12">
-                <p class="other-title text-light">Другое</p>
+        <div class="row text-start">
+            <div class="col-12 border-bottom border-warning my-4">
+                <p class="other-title text-light"><i class="bi bi-people"> </i>{% trans 'Popular' %}</p>
+                <p class="text-secondary">{% trans 'Most popular courses by average number of views' %}</p>
             </div>
         </div>
- 
-        <div class="container mt-5">
-            <div class="row text-center justify-content-center">
-                {% for course in courses %}
-                    {% include 'courses/card.html' with course=course %}
-                {% endfor %}
+        <div id="popular_courses">
+            {% include 'courses/courses.html' with courses=popular_courses %}
+        </div>
+        <div class="row text-start">
+            <div class="col-12 border-bottom border-warning my-4">
+                <p class="other-title text-light"><i class="bi bi-folder-plus"> </i>{% trans 'New' %}</p>
+                <p class="text-secondary">{% trans 'Courses with new lessons' %}</p>
             </div>
         </div>
-        
-
-  
+        <div id="new_courses">
+            {% include 'courses/courses.html' with courses=new_courses %}
+        </div>
     </div>
+
+
+
 {% endblock %}
 
+{% include 'courses/footer.html' %}
+<button onclick="topFunction()" id="backToTop" title="Go to top"><i class="bi bi-arrow-up"></i></button> 
+    
 
-    <!-- Button to toggle theme -->
+  
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <!-- Script for toggling dark theme -->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
 
 </body>
 </html>

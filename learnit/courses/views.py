@@ -20,9 +20,11 @@ class MainPage(TemplateView):
         current_language = get_object_or_404(Language, code=current_language_code)
 
         # Получаем курсы и категории для текущего языка
-        courses = Course.objects.filter(language=current_language)
-        categories = Category.objects.filter(language=current_language)
+        courses = Course.objects.filter(language=current_language, is_published=True)
+        categories = Category.objects.filter(language=current_language, is_published=True)[:15]
 
+        popular_courses = courses.order_by("-average_views")[:5]
+        new_courses = courses.order_by("-modified_date")[:5]
 
         context = super().get_context_data(**kwargs)
 
@@ -30,6 +32,8 @@ class MainPage(TemplateView):
         context.update({
             "courses": courses,
             "categories": categories,
+            "popular_courses": popular_courses,
+            "new_courses": new_courses,
         })
 
         return context
