@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.9.5
+    hooks:
+      # Run the linter.
+      - id: ruff
+      # Run the formatter.
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: coverage-test
+        name: Run coverage tests
+        entry: poetry run coverage run learnit/manage.py test courses.tests
+        language: system
+        pass_filenames: false
+        always_run: true
