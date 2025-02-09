@@ -5,71 +5,117 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('description', models.TextField(max_length=4096)),
-                ('url', models.URLField()),
-                ('lessons_count', models.IntegerField()),
-                ('author', models.CharField(max_length=200)),
-                ('priority', models.IntegerField(default=0)),
-                ('upload_time', models.TimeField(auto_now_add=True)),
-                ('update_time', models.TimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("description", models.TextField(max_length=4096)),
+                ("url", models.URLField()),
+                ("lessons_count", models.IntegerField()),
+                ("author", models.CharField(max_length=200)),
+                ("priority", models.IntegerField(default=0)),
+                ("upload_time", models.DateField(auto_now_add=True)),
+                ("update_time", models.DateField(auto_now=True)),
             ],
             options={
-                'verbose_name': 'Course',
-                'verbose_name_plural': 'Courses',
+                "verbose_name": "Course",
+                "verbose_name_plural": "Courses",
             },
         ),
         migrations.CreateModel(
-            name='Language',
+            name="Language",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
-                ('priority', models.IntegerField(default=0)),
-                ('is_published', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
+                ("priority", models.IntegerField(default=0)),
+                ("is_published", models.BooleanField(default=True)),
             ],
             options={
-                'verbose_name': 'Language',
-                'verbose_name_plural': 'Languages',
+                "verbose_name": "Language",
+                "verbose_name_plural": "Languages",
             },
         ),
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('slug', models.SlugField(default='djangodbmodelsfieldscharfield', max_length=140)),
-                ('priority', models.IntegerField(default=0)),
-                ('create_date', models.DateTimeField(auto_now=True)),
-                ('language', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='courses.language')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                (
+                    "slug",
+                    models.SlugField(
+                        default="djangodbmodelsfieldscharfield", max_length=140
+                    ),
+                ),
+                ("priority", models.IntegerField(default=0)),
+                ("create_date", models.DateField(auto_now=True)),
+                (
+                    "language",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="courses.language",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Category',
-                'verbose_name_plural': 'Categories',
+                "verbose_name": "Category",
+                "verbose_name_plural": "Categories",
             },
         ),
         migrations.CreateModel(
-            name='Lesson',
+            name="Lesson",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=400)),
-                ('description', models.TextField(max_length=4096)),
-                ('lesson_url', models.URLField()),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='courses.course')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=400)),
+                ("description", models.TextField(max_length=4096)),
+                ("lesson_url", models.URLField()),
+                (
+                    "course",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="courses.course"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Lesson',
-                'verbose_name_plural': 'Lessons',
+                "verbose_name": "Lesson",
+                "verbose_name_plural": "Lessons",
             },
         ),
     ]

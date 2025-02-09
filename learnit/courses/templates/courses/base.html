@@ -18,7 +18,7 @@
 <body>
 
 <header>
-    {% include 'courses/header.html' %}
+    {% include 'courses/includes/header.html' %}
 </header>
 
 {% if breadcrumbs %}
@@ -42,11 +42,6 @@
 
 
 {% block 'content' %}
-    <div id="start_video" video_id="5MgBikgcWnY">
-        {% include 'courses/player.html' with videoId='5MgBikgcWnY' %}
-        <p class="text-center text-secondary">{% trans 'Watch until the end to hide the video' %}</p>
-    </div>
-
     <div class="container">
         <div class="row text-start">
             <div class="col-12">
@@ -56,10 +51,17 @@
         <div class="categories">
             {% for category in categories %}
                 {% if category.parent_category is None %}
-                    {% include 'courses/category_card.html' with category=category %}
+                    {% include 'courses/includes/category_card.html' with category=category %}
                 {% endif %}       
             {% endfor %}
         </div>
+
+        <div id="start_video" video_id="5MgBikgcWnY" class="mt-5">
+            {% include 'courses/includes/player.html' with videoId='5MgBikgcWnY' %}
+            <p class="text-center text-secondary">{% trans 'Watch until the end to hide the video' %}</p>
+        </div>
+    
+
         <div class="row text-start">
             <div class="col-12 border-bottom border-warning my-4">
                 <p class="other-title text-light"><i class="bi bi-people"> </i>{% trans 'Popular' %}</p>
@@ -67,7 +69,7 @@
             </div>
         </div>
         <div id="popular_courses">
-            {% include 'courses/courses.html' with courses=popular_courses %}
+            {% include 'courses/includes/courses.html' with courses=popular_courses %}
         </div>
         <div class="row text-start">
             <div class="col-12 border-bottom border-warning my-4">
@@ -76,7 +78,7 @@
             </div>
         </div>
         <div id="new_courses">
-            {% include 'courses/courses.html' with courses=new_courses %}
+            {% include 'courses/includes/courses.html' with courses=new_courses %}
         </div>
     </div>
 
@@ -84,7 +86,7 @@
 
 {% endblock %}
 
-{% include 'courses/footer.html' %}
+{% include 'courses/includes/footer.html' %}
 <button onclick="topFunction()" id="backToTop" title="Go to top"><i class="bi bi-arrow-up"></i></button> 
     
 

@@ -5,36 +5,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0014_course_thumbnail'),
+        ("courses", "0014_course_thumbnail"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='lesson',
-            old_name='thumbnail_url',
-            new_name='thumbnail',
+            model_name="lesson",
+            old_name="thumbnail_url",
+            new_name="thumbnail",
         ),
         migrations.AddField(
-            model_name='course',
-            name='average_views',
+            model_name="course",
+            name="average_views",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='course',
-            name='language',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.PROTECT, to='courses.language'),
+            model_name="course",
+            name="language",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="courses.language",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='course',
-            name='total_duration',
+            model_name="course",
+            name="total_duration",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='course',
-            name='total_views',
+            model_name="course",
+            name="total_views",
             field=models.PositiveIntegerField(default=0),
         ),
     ]

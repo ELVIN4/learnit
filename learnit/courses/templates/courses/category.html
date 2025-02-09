@@ -7,13 +7,11 @@
 
 <div class="container">
     {% for child_category in child_categories %}
-        {% include 'courses/category_card.html' with category=child_category %}
+        {% include 'courses/includes/category_card.html' with category=child_category %}
     {% endfor %}
 </div>
 
-{% include 'courses/courses.html' with courses=courses %}
-<!-- {% for course in courses %}
-    {% include 'courses/card.html' with course=course %}
-{% endfor %} -->
+{% include 'courses/includes/courses.html' with courses=courses %}
+
 
 {% endblock %}

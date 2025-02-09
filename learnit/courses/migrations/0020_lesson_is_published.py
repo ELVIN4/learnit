@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0019_category_parent_category'),
+        ("courses", "0019_category_parent_category"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='lesson',
-            name='is_published',
+            model_name="lesson",
+            name="is_published",
             field=models.BooleanField(default=True),
         ),
     ]

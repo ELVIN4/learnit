@@ -12,6 +12,6 @@
     </span>
 </div>
     {% for course in courses %}
-        {% include 'courses/card.html' with course=course author_page=author_page %}
+        {% include 'courses/includes/card.html' with course=course author_page=author_page %}
     {% endfor %}
 {% endblock %}

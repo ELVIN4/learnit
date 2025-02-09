@@ -15,7 +15,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=140)
     priority = models.IntegerField(default=0)
-    create_date = models.DateTimeField(auto_now=True)
+    create_date = models.DateField(auto_now_add=True)
     language = models.ForeignKey("Language", on_delete=models.PROTECT)
     is_published = models.BooleanField(default=True)
 
@@ -64,7 +64,7 @@ class Lesson(models.Model):
     views = models.PositiveIntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     duration = models.PositiveIntegerField(default=0)
-    upload_date = models.DateTimeField(auto_now_add=True)
+    upload_date = models.DateField(auto_now_add=True)
 
     is_published = models.BooleanField(default=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

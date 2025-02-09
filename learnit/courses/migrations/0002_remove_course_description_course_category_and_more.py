@@ -5,24 +5,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0001_initial'),
+        ("courses", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='course',
-            name='description',
+            model_name="course",
+            name="description",
         ),
         migrations.AddField(
-            model_name='course',
-            name='category',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='courses.category'),
+            model_name="course",
+            name="category",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="courses.category",
+            ),
         ),
         migrations.AlterField(
-            model_name='lesson',
-            name='course',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='courses.course'),
+            model_name="lesson",
+            name="course",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="courses.course"
+            ),
         ),
     ]

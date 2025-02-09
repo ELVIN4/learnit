@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0015_rename_thumbnail_url_lesson_thumbnail_and_more'),
+        ("courses", "0015_rename_thumbnail_url_lesson_thumbnail_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='lesson',
-            name='duration',
+            model_name="lesson",
+            name="duration",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='lesson',
-            name='description',
+            model_name="lesson",
+            name="description",
             field=models.TextField(null=True),
         ),
         migrations.AlterField(
-            model_name='lesson',
-            name='upload_date',
-            field=models.DateTimeField(auto_now_add=True),
+            model_name="lesson",
+            name="upload_date",
+            field=models.DateField(auto_now_add=True),
         ),
     ]

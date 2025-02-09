@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 02:01+0100\n"
+"POT-Creation-Date: 2025-02-09 01:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,46 +19,125 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: learnit/courses/templates/courses/card.html:21
-msgid "lessons"
-msgstr "уроков"
 
-#: learnit/courses/templates/courses/card.html:24
-msgid "Start course"
-msgstr "Начать курс"
+#: courses/mixins/breadcrumbs_mixin.py:15
+#: courses/templates/courses/includes/footer.html:14
+msgid "Home"
+msgstr "Главная"
 
-#: learnit/courses/templates/courses/header.html:14
+#: courses/templates/courses/author.html:8
+msgid "Courses by:"
+msgstr "Курсы от"
+
+#: courses/templates/courses/base.html:48
+#: courses/templates/courses/includes/footer.html:16
+#: courses/templates/courses/includes/header.html:14
 msgid "Categories"
 msgstr "Категории"
 
-#: learnit/courses/templates/courses/header.html:17
+#: courses/templates/courses/base.html:61
+msgid "Watch until the end to hide the video"
+msgstr "Досмотри до конца, чтобы скрыть видео"
+
+#: courses/templates/courses/base.html:67
+msgid "Popular"
+msgstr "Популярное"
+
+#: courses/templates/courses/base.html:68
+msgid "Most popular courses by average number of views"
+msgstr "Самые популярные курсы по среднему числу просмотров уроков"
+
+#: courses/templates/courses/base.html:76
+msgid "New"
+msgstr "Новые"
+
+#: courses/templates/courses/base.html:77
+msgid "Courses with new lessons"
+msgstr "Курсы с новыми уроками"
+
+#: courses/templates/courses/includes/card.html:28
+msgid "lessons"
+msgstr "уроков"
+
+#: courses/templates/courses/includes/card.html:31
+msgid "Start course"
+msgstr "Начать курс"
+
+#: courses/templates/courses/includes/footer.html:8
+msgid "About"
+msgstr "О проекте"
+
+#: courses/templates/courses/includes/footer.html:9
+msgid ""
+"YouTube offers a vast collection of educational courses, but it's not always "
+"the most convenient platform for learning. LearnIT is specifically designed "
+"to streamline the learning process, making it easier and more efficient. "
+"We're constantly looking for ways to improve, so if you have any ideas or "
+"suggestions, feel free to share. Your feedback is valuable and helps us "
+"enhance the platform to better serve your needs."
+msgstr ""
+"YouTube предлагает обширную коллекцию образовательных курсов, но это не всегда самая удобная платформа для обучения. "  
+"LearnIT специально разработан для оптимизации процесса обучения, делая его более легким и эффективным. "  
+"Мы постоянно ищем способы улучшить платформу, поэтому, если у вас есть идеи или предложения, не стесняйтесь делиться ими. "  
+
+#: courses/templates/courses/includes/footer.html:12
+msgid "Navigation"
+msgstr "Навигация"
+
+#: courses/templates/courses/includes/footer.html:15
+#: courses/templates/courses/includes/header.html:20
+msgid "Account"
+msgstr "Аккаунт"
+
+#: courses/templates/courses/includes/footer.html:17
+#: courses/templates/courses/includes/header.html:17
 msgid "History"
 msgstr "История"
 
-#: learnit/courses/templates/courses/header.html:20
-msgid "Accounts"
-msgstr "Аккаунты"
+#: courses/templates/courses/includes/footer.html:18
+#, fuzzy
+#| msgid "Start course"
+msgid "Search courses"
+msgstr "Найти курс"
 
-#: learnit/courses/templates/courses/header.html:25
+#: courses/templates/courses/includes/footer.html:22
+msgid "Open source"
+msgstr ""
+
+#: courses/templates/courses/includes/footer.html:23
+msgid ""
+"The project is developed under the MIT License, and the source code is "
+"available on"
+msgstr "LearnIT разрабатывается под лицензией MIT, и его исходный код доступен на"
+
+#: courses/templates/courses/includes/header.html:35
 msgid "Find a course..."
-msgstr "Поиск по курсам..."
+msgstr "Найти курс..."
 
-#: learnit/courses/templates/courses/header.html:26
+#: courses/templates/courses/includes/header.html:36
 msgid "Search"
 msgstr "Найти"
 
-#: learnit/courses/templates/courses/lesson.html:17
+#: courses/templates/courses/includes/lesson_card.html:19
+msgid "Start lesson"
+msgstr "Начать урок"
+
+#: courses/templates/courses/includes/stats.html:4
+msgid "Stats"
+msgstr "Статистика"
+
+#: courses/templates/courses/lesson.html:17
 msgid "Back"
 msgstr "Назад"
 
-#: learnit/courses/templates/courses/lesson.html:23
+#: courses/templates/courses/lesson.html:23
 msgid "Exit"
 msgstr "Выход"
 
-#: learnit/courses/templates/courses/lesson.html:40
+#: courses/templates/courses/lesson.html:40
 msgid "Next"
 msgstr "Вперед"
 
-#: learnit/courses/templates/courses/lesson_card.html:19
-msgid "Start lesson"
-msgstr "Начать урок"
+#: courses/templates/courses/lesson.html:46
+msgid "Finish"
+msgstr "Финиш"

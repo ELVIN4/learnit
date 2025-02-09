@@ -5,15 +5,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0018_alter_course_url_alter_lesson_video_id'),
+        ("courses", "0018_alter_course_url_alter_lesson_video_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='category',
-            name='parent_category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='courses.category'),
+            model_name="category",
+            name="parent_category",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="courses.category",
+            ),
         ),
     ]

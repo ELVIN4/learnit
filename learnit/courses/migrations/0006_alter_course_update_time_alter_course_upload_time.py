@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0005_alter_course_upload_time'),
+        ("courses", "0005_alter_course_upload_time"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='course',
-            name='update_time',
-            field=models.DateTimeField(auto_now=True),
+            model_name="course",
+            name="update_time",
+            field=models.DateField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='upload_time',
-            field=models.DateTimeField(auto_now_add=True),
+            model_name="course",
+            name="upload_time",
+            field=models.DateField(auto_now_add=True),
         ),
     ]

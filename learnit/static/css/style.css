@@ -11,7 +11,6 @@ body {
 }
 
 .navbar-nav .nav-link {
-    color: #f39c12;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -26,6 +25,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.navbar-brand:hover {
+    color: #ffc107; 
+}
 
 /* Стили для заголовков */
 .popular-title, .other-title {

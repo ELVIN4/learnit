@@ -32,7 +32,7 @@
         <div class="row text-center justify-content-center">
             <section class="dark">
             {% for lesson in lessons %}
-                {% include 'courses/lesson_card.html' with lesson=lesson course=course %}
+                {% include 'courses/includes/lesson_card.html' with lesson=lesson course=course %}
             {% endfor %}
             </section>
         </div>

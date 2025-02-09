@@ -21,7 +21,9 @@ class MainPage(TemplateView):
 
         # Получаем курсы и категории для текущего языка
         courses = Course.objects.filter(language=current_language, is_published=True)
-        categories = Category.objects.filter(language=current_language, is_published=True)[:15]
+        categories = Category.objects.filter(
+            language=current_language, is_published=True
+        )[:15]
 
         popular_courses = courses.order_by("-average_views")[:5]
         new_courses = courses.order_by("-modified_date")[:5]
@@ -29,14 +31,17 @@ class MainPage(TemplateView):
         context = super().get_context_data(**kwargs)
 
         # Добавляем курсы и категории в контекст
-        context.update({
-            "courses": courses,
-            "categories": categories,
-            "popular_courses": popular_courses,
-            "new_courses": new_courses,
-        })
+        context.update(
+            {
+                "courses": courses,
+                "categories": categories,
+                "popular_courses": popular_courses,
+                "new_courses": new_courses,
+            }
+        )
 
         return context
+
 
 class CategoryPage(BreadcrumbsMixin, ListView):
     """Вывод всех курсов по категории"""
@@ -44,20 +49,22 @@ class CategoryPage(BreadcrumbsMixin, ListView):
     model = Course
     template_name = "courses/category.html"
     context_object_name = "courses"
-    paginate_by = 20  
+    paginate_by = 20
 
     def get_queryset(self):
-        category = get_object_or_404(Category, slug=self.kwargs['category'])
+        category = get_object_or_404(Category, slug=self.kwargs["category"])
         child_categories = Category.objects.filter(parent_category=category)
 
-
-        queryset = Course.objects.filter(
-            Q(category=category)
-            | Q(category__in=child_categories)
-        ).filter(is_published=True).order_by(
-            "-priority",
-            "-average_views",
-            "-modified_date",
+        queryset = (
+            Course.objects.filter(
+                Q(category=category) | Q(category__in=child_categories)
+            )
+            .filter(is_published=True)
+            .order_by(
+                "-priority",
+                "-average_views",
+                "-modified_date",
+            )
         )
 
         self.category = category
@@ -69,11 +76,11 @@ class CategoryPage(BreadcrumbsMixin, ListView):
         context = super().get_context_data(**kwargs)
 
         # Добавляем в контекст текущую категорию и дочерние категории
-        context['category'] = self.category
-        context['child_categories'] = self.child_categories
+        context["category"] = self.category
+        context["child_categories"] = self.child_categories
 
         # Получаем хлебные крошки с учетом текущей категории
-        context['breadcrumbs'] = self.get_breadcrumbs()
+        context["breadcrumbs"] = self.get_breadcrumbs()
 
         return context
 
@@ -85,7 +92,9 @@ class CategoryPage(BreadcrumbsMixin, ListView):
         # Добавляем родительские категории (если есть)
         parent_category = self.category.parent_category
         while parent_category:
-            categories.insert(0, parent_category)  # Вставляем в начало, чтобы они шли до текущей категории
+            categories.insert(
+                0, parent_category
+            )  # Вставляем в начало, чтобы они шли до текущей категории
             parent_category = parent_category.parent_category
 
         # Добавляем текущую категорию в хлебные крошки
@@ -97,7 +106,7 @@ class CategoryPage(BreadcrumbsMixin, ListView):
                 }
             )
         return breadcrumbs
-    
+
 
 class CoursePage(View):
     """Вывод всех уроков по курсу"""
@@ -131,4 +140,11 @@ class AuthorPage(View):
         if not courses.exists():
             raise Http404()
 
-        return render(request, "courses/author.html", context={"courses": courses, "author_page": True,})
+        return render(
+            request,
+            "courses/author.html",
+            context={
+                "courses": courses,
+                "author_page": True,
+            },
+        )

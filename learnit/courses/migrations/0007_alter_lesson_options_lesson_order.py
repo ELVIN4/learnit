@@ -4,19 +4,22 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0006_alter_course_update_time_alter_course_upload_time'),
+        ("courses", "0006_alter_course_update_time_alter_course_upload_time"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='lesson',
-            options={'ordering': ['order'], 'verbose_name': 'Lesson', 'verbose_name_plural': 'Lessons'},
+            name="lesson",
+            options={
+                "ordering": ["order"],
+                "verbose_name": "Lesson",
+                "verbose_name_plural": "Lessons",
+            },
         ),
         migrations.AddField(
-            model_name='lesson',
-            name='order',
+            model_name="lesson",
+            name="order",
             field=models.PositiveIntegerField(default=1),
             preserve_default=False,
         ),

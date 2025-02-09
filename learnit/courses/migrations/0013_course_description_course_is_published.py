@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0012_remove_course_upload_time'),
+        ("courses", "0012_remove_course_upload_time"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='course',
-            name='description',
+            model_name="course",
+            name="description",
             field=models.TextField(null=True),
         ),
         migrations.AddField(
-            model_name='course',
-            name='is_published',
+            model_name="course",
+            name="is_published",
             field=models.BooleanField(default=True),
         ),
     ]

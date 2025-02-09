@@ -17,12 +17,14 @@ class CourseAdminForm(forms.ModelForm):
         instance.thumbnail = course["playlist"]["thumbnail"]
         instance.description = course["playlist"]["description"]
         instance.lessons_count = course["playlist"]["video_count"]
-        instance.total_views = course['playlist']['total_views']
-        instance.average_views = course['playlist']['average_views']
-        instance.total_duration = course['playlist']['total_duration']
-        instance.author = course["playlist"]['author']
+        instance.total_views = course["playlist"]["total_views"]
+        instance.average_views = course["playlist"]["average_views"]
+        instance.total_duration = course["playlist"]["total_duration"]
+        instance.author = course["playlist"]["author"]
         instance.author_id = course["playlist"]["author_id"]
-        instance.modified_date = datetime.strptime(course["playlist"]["modified_date"], '%Y%m%d')
+        instance.modified_date = datetime.strptime(
+            course["playlist"]["modified_date"], "%Y%m%d"
+        )
 
         instance.save()
 
@@ -36,7 +38,5 @@ class CourseAdminForm(forms.ModelForm):
                 duration=lesson["duration"],
                 course=instance,
             )
-
-
 
         return instance

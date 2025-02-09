@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('courses', '0013_course_description_course_is_published'),
+        ("courses", "0013_course_description_course_is_published"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='course',
-            name='thumbnail',
+            model_name="course",
+            name="thumbnail",
             field=models.URLField(null=True),
         ),
     ]

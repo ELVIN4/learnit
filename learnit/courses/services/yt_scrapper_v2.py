@@ -1,6 +1,7 @@
 import yt_dlp
 from pprint import pprint
 
+
 def get_playlist_info(playlist_url):
     ydl_opts = {
         "quiet": True,
@@ -56,6 +57,8 @@ def get_playlist_info(playlist_url):
 
 if __name__ == "__main__":
     # Вставьте URL плейлиста YouTube
-    playlist_url = "https://www.youtube.com/playlist?list=PLPVtHmdLrdV-VCfKKWAnJrexMT7yd7OJ7"
+    playlist_url = (
+        "https://www.youtube.com/playlist?list=PLPVtHmdLrdV-VCfKKWAnJrexMT7yd7OJ7"
+    )
     test = get_playlist_info(playlist_url)
     pprint(test)

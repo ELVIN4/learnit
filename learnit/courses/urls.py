@@ -11,5 +11,5 @@ urlpatterns = [
         LessonPage.as_view(),
         name="lesson",
     ),
-    path("author/<slug:author_id>", AuthorPage.as_view(), name="author")
+    path("author/<slug:author_id>", AuthorPage.as_view(), name="author"),
 ]
