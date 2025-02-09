@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       if (parseInt(startVidValue) > 1125) { 
           if (startVideoElement) {
-              startVideoElement.style.display = 'none';
+              startVideoElement.remove();
           }
       }
 }})

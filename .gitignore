@@ -7,3 +7,5 @@ db.sqlite3
 .env
 .vscode/
 .ruff_cache
+.coverage
+coverage.xml

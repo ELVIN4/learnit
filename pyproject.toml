@@ -23,6 +23,7 @@ package-mode = false
 ipython = "^8.31.0"
 django-extensions = "^3.2.3"
 ruff = "^0.9.4"
+coverage = "^7.6.11"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

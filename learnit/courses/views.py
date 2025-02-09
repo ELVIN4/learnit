@@ -15,15 +15,16 @@ class MainPage(TemplateView):
     template_name = "courses/base.html"
 
     def get_context_data(self, **kwargs):
-        # Получаем текущий язык
         current_language_code = get_language()
         current_language = get_object_or_404(Language, code=current_language_code)
 
         # Получаем курсы и категории для текущего языка
         courses = Course.objects.filter(language=current_language, is_published=True)
         categories = Category.objects.filter(
-            language=current_language, is_published=True
-        )[:15]
+            parent_category=None,
+            language=current_language, 
+            is_published=True,
+        ).order_by("-priority")[:15]
 
         popular_courses = courses.order_by("-average_views")[:5]
         new_courses = courses.order_by("-modified_date")[:5]
