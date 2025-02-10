@@ -82,6 +82,14 @@ class CategoryPage(BreadcrumbsMixin, ListView):
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs["category"])
         child_categories = Category.objects.filter(parent_category=category)
+        subcategories_cache_key = f"category_{category.slug}_all_subcategories"
+        subcategories = cache.get(subcategories_cache_key)
+
+        if not subcategories:
+            subcategories = self.get_all_subcategories(category)
+            cache.set(
+                subcategories_cache_key, subcategories, timeout=60 * 240
+            )  # 240 minutes
 
         cache_key = f"category_{category.slug}_page_{self.paginate_by}_lang_{get_language()}_{self.request.GET.get('page', 1)}"
         queryset = cache.get(cache_key)
@@ -89,7 +97,7 @@ class CategoryPage(BreadcrumbsMixin, ListView):
         if not queryset:
             queryset = (
                 Course.objects.filter(
-                    Q(category=category) | Q(category__in=child_categories)
+                    Q(category=category) | Q(category__in=subcategories)
                 )
                 .filter(is_published=True)
                 .order_by(
@@ -135,6 +143,14 @@ class CategoryPage(BreadcrumbsMixin, ListView):
                 }
             )
         return breadcrumbs
+
+    def get_all_subcategories(self, category):
+        subcategories = [category]
+        children = Category.objects.filter(parent_category=category, is_published=True)
+        for child in children:
+            subcategories.extend(self.get_all_subcategories(child))  # recurcive shit
+
+        return subcategories
 
 
 class CoursePage(DetailView):
