@@ -22,7 +22,7 @@ class MainPage(TemplateView):
         courses = Course.objects.filter(language=current_language, is_published=True)
         categories = Category.objects.filter(
             parent_category=None,
-            language=current_language, 
+            language=current_language,
             is_published=True,
         ).order_by("-priority")[:15]
 
@@ -124,8 +124,6 @@ class CoursePage(View):
 
 
 class LessonPage(View):
-    """Урок"""
-
     def get(self, request, course_slug, lesson_order):
         lesson = get_object_or_404(
             Lesson.objects.filter(course__slug=course_slug, order=lesson_order)
@@ -149,3 +147,35 @@ class AuthorPage(View):
                 "author_page": True,
             },
         )
+
+
+# TO DO use elasticsearch
+class SearchPage(ListView):
+    template_name = "courses/search.html"
+
+    def get_queryset(self):
+        return []
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_language_code = get_language()
+
+        query = self.request.GET.get("q", "")
+
+        context["categories"] = Category.objects.filter(
+            Q(name__icontains=query)
+            & Q(language__code=current_language_code)
+            & Q(is_published=True)
+        )
+        context["courses"] = Course.objects.filter(
+            Q(name__icontains=query)
+            & Q(language__code=current_language_code)
+            & Q(is_published=True)
+        )
+
+        context["result_count"] = (
+            context["categories"].count() + context["courses"].count()
+        )
+        context["q"] = query
+
+        return context

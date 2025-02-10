@@ -1,9 +1,17 @@
 from django.urls import path
 
-from .views import MainPage, CategoryPage, CoursePage, LessonPage, AuthorPage
+from .views import (
+    MainPage,
+    CategoryPage,
+    CoursePage,
+    LessonPage,
+    AuthorPage,
+    SearchPage,
+)
 
 urlpatterns = [
     path("", MainPage.as_view(), name="main"),
+    path("search/", SearchPage.as_view(), name="search"),
     path("<slug:category>", CategoryPage.as_view(), name="category"),
     path("course/<slug:course_slug>", CoursePage.as_view(), name="course"),
     path(

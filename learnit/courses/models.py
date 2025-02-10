@@ -12,7 +12,7 @@ class Category(models.Model):
         null=True,
         blank=True,
     )
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=140)
     priority = models.IntegerField(default=0)
     create_date = models.DateField(auto_now_add=True)
@@ -28,7 +28,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=280, db_index=True)
     slug = models.SlugField(null=True, max_length=300)
     thumbnail = models.URLField(null=True)
     description = models.TextField(null=True)

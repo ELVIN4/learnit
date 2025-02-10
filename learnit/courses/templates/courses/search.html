@@ -1,0 +1,22 @@
+{% extends 'courses/base.html' %}
+
+{% load i18n %}
+
+{% block 'content' %}
+<div class="container">
+    <div class="row text-start">
+        <div class="col-12">
+            <p class="popular-title text-light"><i class="bi bi-search"></i>: {{ q }} | ~{{ result_count }} <i class="bi bi-database-check"></i></p>
+        </div>
+    </div>
+    {% if result_count < 1 %}
+        <p>{% trans 'Nothing... but why?' %}</p>
+    {% endif %}
+    <div class="mt-5">
+        {% for category in categories %}
+            {% include 'courses/includes/category_card.html' with category=category %}
+        {% endfor %}
+    </div>
+    {% include 'courses/includes/courses.html' with courses=courses  %}
+</div>
+{% endblock %}
