@@ -1,21 +1,21 @@
 from django.test import TestCase
-from ..models import Course, Category, Language
+from courses.models import Course, Category, Language
+
 
 class CourseModelTest(TestCase):
     def setUp(self):
         self.language = Language.objects.create(name="English", code="en")
         self.category = Category.objects.create(
-            name="Programming", 
-            language=self.language
+            name="Programming", language=self.language
         )
         self.course = Course.objects.create(
-            name="Django for Beginners", 
+            name="Django for Beginners",
             url="https://example.com",
-            thumbnail="https://y.image.com/testLearnIT",  
-            lessons_count=10, 
+            thumbnail="https://y.image.com/testLearnIT",
+            lessons_count=10,
             author="John Doe",
             category=self.category,
-            language=self.language
+            language=self.language,
         )
 
     def test_course_creation(self):

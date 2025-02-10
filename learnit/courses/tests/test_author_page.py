@@ -1,17 +1,20 @@
 from django.test import TestCase
 from django.urls import reverse
-from ..models import Course, Category, Language
+from courses.models import Course, Category, Language
+
 
 class AuthorPageTest(TestCase):
     def setUp(self):
         self.language = Language.objects.create(name="English", code="en")
-        self.category = Category.objects.create(name="Programming", language=self.language)
+        self.category = Category.objects.create(
+            name="Programming", language=self.language
+        )
         self.course = Course.objects.create(
             name="Django for Beginners",
             author="John Doe",
             author_id="123",
             url="https://example.com",
-            thumbnail="https://y.image.com/testLearnIT", 
+            thumbnail="https://y.image.com/testLearnIT",
             lessons_count=10,
             category=self.category,
             language=self.language,

@@ -1,5 +1,6 @@
 from django.test import TestCase
-from ..models import Language
+from courses.models import Language
+
 
 class LanguageModelTest(TestCase):
     def setUp(self):
