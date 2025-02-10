@@ -1,10 +1,13 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.core.cache import cache
 from courses.models import Lesson, Course, Category, Language
 
 
 class LessonPageTest(TestCase):
     def setUp(self):
+        cache.clear()
+
         self.language = Language.objects.create(name="English", code="en")
         self.category = Category.objects.create(
             name="Programming", language=self.language

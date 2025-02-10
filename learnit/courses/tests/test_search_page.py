@@ -1,11 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.translation import activate
+from django.core.cache import cache
 from ..models import Course, Category, Language
 
 
 class SearchPageTest(TestCase):
     def setUp(self):
+        cache.clear()
+
         self.language = Language.objects.create(name="English", code="en")
         activate("en")
         self.category = Category.objects.create(
