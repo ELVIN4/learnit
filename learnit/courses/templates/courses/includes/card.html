@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load custom_tags %}
+{% load humanize %}
 
 <section class="dark">
     <div class="container py-4">
@@ -25,6 +26,7 @@
                         <i class="bi bi-person"> </i><a href="{% url 'author' course.author_id %}">{{ course.author }}</a> 
                     </li>
                     {% endif %}
+                    <li class="tag__item"><i class="bi bi-binoculars"> </i>{{ course.total_views|intcomma }}</li>
                     <li class="tag__item"><i class="bi bi-book"> </i>{{ course.lessons_count }} {% trans "lessons" %}</li>
                     <li class="tag__item"><i class="bi bi-stopwatch"> </i>{{ course.total_duration|seconds_to_hours }}h</li>
                     <li class="tag__item play blue">
