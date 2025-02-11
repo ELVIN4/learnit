@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-10 04:48+0100\n"
+"POT-Creation-Date: 2025-02-11 02:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,14 @@ msgstr ""
 msgid "Home"
 msgstr "Главная"
 
+#: courses/templates/courses/all_categories.html:9
+msgid "All categories"
+msgstr "Все категории"
+
+#: courses/templates/courses/all_categories.html:10
+msgid "Find a category..."
+msgstr "Поиск по категориям..."
+
 #: courses/templates/courses/author.html:8
 msgid "Courses by:"
 msgstr "Курсы от"
@@ -35,31 +43,31 @@ msgstr "Курсы от"
 msgid "Categories"
 msgstr "Категории"
 
-#: courses/templates/courses/base.html:61
+#: courses/templates/courses/base.html:64
 msgid "Watch until the end to hide the video"
 msgstr "Досмотри до конца, чтобы скрыть видео"
 
-#: courses/templates/courses/base.html:67
+#: courses/templates/courses/base.html:70
 msgid "Popular"
 msgstr "Популярное"
 
-#: courses/templates/courses/base.html:68
+#: courses/templates/courses/base.html:71
 msgid "Most popular courses by average number of views"
 msgstr "Самые популярные курсы по среднему числу просмотров уроков"
 
-#: courses/templates/courses/base.html:76
+#: courses/templates/courses/base.html:79
 msgid "New"
 msgstr "Новые"
 
-#: courses/templates/courses/base.html:77
+#: courses/templates/courses/base.html:80
 msgid "Courses with new lessons"
 msgstr "Курсы с новыми уроками"
 
-#: courses/templates/courses/includes/card.html:28
+#: courses/templates/courses/includes/card.html:30
 msgid "lessons"
 msgstr "уроков"
 
-#: courses/templates/courses/includes/card.html:31
+#: courses/templates/courses/includes/card.html:33
 msgid "Start course"
 msgstr "Начать курс"
 
@@ -97,9 +105,7 @@ msgid "History"
 msgstr "История"
 
 #: courses/templates/courses/includes/footer.html:18
-#, fuzzy
-#| msgid "Start course"
-msgid "Search courses"
+msgid "Find a course"
 msgstr "Найти курс"
 
 #: courses/templates/courses/includes/footer.html:22
@@ -148,3 +154,4 @@ msgstr "Финиш"
 #: courses/templates/courses/search.html:13
 msgid "Nothing... but why?"
 msgstr "Ничего не найдено..."
+

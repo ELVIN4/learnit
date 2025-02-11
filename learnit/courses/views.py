@@ -44,7 +44,7 @@ class MainPage(TemplateView):
             parent_category=None,
             language=current_language,
             is_published=True,
-        ).order_by("-priority")[:15]  # top 15 categories that have no parent category
+        ).order_by("-priority")[:20]  # top 20 categories that have no parent category
 
         popular_courses = courses.order_by("-average_views")[:5]
         new_courses = courses.order_by("-modified_date")[:5]
@@ -260,6 +260,34 @@ class AuthorPage(ListView):
 
         context["author_page"] = True
         return context
+
+
+class AllCategoriesPage(ListView):
+    """
+    This class display all categories on the page.
+
+    Categories filtered by language and publication status.
+
+    The courses are cached for 25 minutes.
+    """
+
+    model = Category
+    template_name = "courses/all_categories.html"
+    context_object_name = "categories"
+
+    def get_queryset(self):
+        current_language_code = get_language()
+        cache_key = f"all_categories_{current_language_code}"
+        cached_categories = cache.get(cache_key)
+
+        if not cached_categories:
+            current_language = get_object_or_404(Language, code=current_language_code)
+            cached_categories = Category.objects.filter(
+                Q(is_published=True) & Q(language=current_language)
+            ).order_by("-priority", "-parent_category")
+            cache.set(cache_key, cached_categories, timeout=60 * 25)
+
+        return cached_categories
 
 
 # TO DO use elasticsearch

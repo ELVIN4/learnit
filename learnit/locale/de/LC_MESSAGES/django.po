@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-10 04:50+0100\n"
+"POT-Creation-Date: 2025-02-11 02:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,14 @@ msgstr ""
 msgid "Home"
 msgstr "Startseite"
 
+#: courses/templates/courses/all_categories.html:9
+msgid "All categories"
+msgstr "Alle Kategorien"
+
+#: courses/templates/courses/all_categories.html:10
+msgid "Find a category..."
+msgstr "Kategorie suchen..."
+
 #: courses/templates/courses/author.html:8
 msgid "Courses by:"
 msgstr "Kurse von:"
@@ -33,31 +41,31 @@ msgstr "Kurse von:"
 msgid "Categories"
 msgstr "Kategorien"
 
-#: courses/templates/courses/base.html:61
+#: courses/templates/courses/base.html:64
 msgid "Watch until the end to hide the video"
 msgstr "Schau bis zum Ende, um das Video zu verbergen"
 
-#: courses/templates/courses/base.html:67
+#: courses/templates/courses/base.html:70
 msgid "Popular"
 msgstr "Beliebt"
 
-#: courses/templates/courses/base.html:68
+#: courses/templates/courses/base.html:71
 msgid "Most popular courses by average number of views"
 msgstr "Die beliebtesten Kurse nach durchschnittlicher Anzahl von Aufrufen"
 
-#: courses/templates/courses/base.html:76
+#: courses/templates/courses/base.html:79
 msgid "New"
 msgstr "Neu"
 
-#: courses/templates/courses/base.html:77
+#: courses/templates/courses/base.html:80
 msgid "Courses with new lessons"
 msgstr "Kurse mit neuen Lektionen"
 
-#: courses/templates/courses/includes/card.html:28
+#: courses/templates/courses/includes/card.html:30
 msgid "lessons"
 msgstr "Lektionen"
 
-#: courses/templates/courses/includes/card.html:31
+#: courses/templates/courses/includes/card.html:33
 msgid "Start course"
 msgstr "Kurs starten"
 
@@ -96,15 +104,11 @@ msgstr "Konto"
 msgid "History"
 msgstr "Verlauf"
 
-#: courses/templates/courses/includes/footer.html:18
-msgid "Search courses"
-msgstr "Kurse suchen"
-
-#: courses/templates/courses/includes/footer.html:22
+#: courses/templates/courses/includes/footer.html:21
 msgid "Open source"
 msgstr "Open Source"
 
-#: courses/templates/courses/includes/footer.html:23
+#: courses/templates/courses/includes/footer.html:22
 msgid ""
 "The project is developed under the MIT License, and the source code is "
 "available on"
@@ -114,7 +118,7 @@ msgstr ""
 
 #: courses/templates/courses/includes/header.html:35
 msgid "Find a course..."
-msgstr "Kurs finden..."
+msgstr "Kurs suchen..."
 
 #: courses/templates/courses/includes/header.html:36
 msgid "Search"

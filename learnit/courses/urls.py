@@ -7,11 +7,13 @@ from .views import (
     LessonPage,
     AuthorPage,
     SearchPage,
+    AllCategoriesPage,
 )
 
 urlpatterns = [
     path("", MainPage.as_view(), name="main"),
     path("search/", SearchPage.as_view(), name="search"),
+    path("categories/", AllCategoriesPage.as_view(), name="categories"),
     path("<slug:category>", CategoryPage.as_view(), name="category"),
     path("course/<slug:course_slug>", CoursePage.as_view(), name="course"),
     path(

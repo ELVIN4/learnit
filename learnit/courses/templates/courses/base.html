@@ -36,7 +36,7 @@
         {% endfor %}
         </ol>
     </div>
-  </nav>
+</nav>
 {% endif %}
 
 
@@ -54,6 +54,9 @@
                     {% include 'courses/includes/category_card.html' with category=category %}
                 {% endif %}       
             {% endfor %}
+            <a href="{% url 'categories' %}">
+                <button type="button" class="btn btn-dark m-1 category-button"></i>...</button>
+            </a>
         </div>
 
         <div id="start_video" video_id="5MgBikgcWnY" class="mt-5">

@@ -32,3 +32,22 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       }
 }})
+
+// category search
+const searchInput = document.getElementById('search-input');
+if (searchInput) {
+  const categoryButtons = document.querySelectorAll('.category-button');
+
+  searchInput.addEventListener('input', function() {
+    const filter = searchInput.value.toLowerCase();
+
+    categoryButtons.forEach(function(button) {
+      const categoryText = button.textContent.toLowerCase();
+      if (categoryText.includes(filter)) {
+        button.style.display = "";
+      } else {
+        button.style.display = "none";
+      }
+    });
+  })
+};
