@@ -1,17 +1,15 @@
 import yt_dlp
-from pprint import pprint
 
 
 def get_playlist_info(playlist_url):
     ydl_opts = {
         "quiet": True,
-        "extract_flat": True,  # Не загружает видео, а только извлекает информацию
+        "extract_flat": True,
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         playlist_info = ydl.extract_info(playlist_url, download=False)
 
-        pprint(playlist_info)
         course = {
             "playlist": {
                 "title": playlist_info["title"],
@@ -53,12 +51,3 @@ def get_playlist_info(playlist_url):
         )
 
     return course
-
-
-if __name__ == "__main__":
-    # Вставьте URL плейлиста YouTube
-    playlist_url = (
-        "https://www.youtube.com/playlist?list=PLPVtHmdLrdV-VCfKKWAnJrexMT7yd7OJ7"
-    )
-    test = get_playlist_info(playlist_url)
-    pprint(test)

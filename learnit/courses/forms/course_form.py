@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ValidationError
 from courses.models import Course, Lesson
 from datetime import datetime
 from courses.services.yt_scrapper_v2 import get_playlist_info
@@ -9,9 +10,20 @@ class CourseAdminForm(forms.ModelForm):
         model = Course
         fields = ["category", "url", "is_published", "priority", "language"]
 
+    def clean(self):
+        cleaned_data = super().clean()
+        url = cleaned_data.get("url")
+
+        try:
+            self.course = get_playlist_info(url)
+        except Exception as e:
+            raise ValidationError(e)
+
+        return cleaned_data
+
     def save(self, commit=True):
         instance = super().save(commit)
-        course = get_playlist_info(instance.url)
+        course = self.course
 
         instance.name = course["playlist"]["title"]
         instance.thumbnail = course["playlist"]["thumbnail"]
