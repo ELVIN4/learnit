@@ -65,6 +65,7 @@ class CategoryAdmin(admin.ModelAdmin):
         "name",
         "slug",
         "priority",
+        "parent_category",
         "create_date",
         "language",
         "is_published",

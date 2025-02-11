@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row align-items-center m-3">
           <div class="col-auto">
-            {% if lesson.order|add:'-1' > 0%}
+            {% if lesson.order|add:'-1' > 0 %}
               <a href="{{ lesson.order|add:'-1' }}">
                 <button class="btn btn-secondary">
                   <i class="bi bi-arrow-left"></i> {% trans "Back" %}
@@ -34,7 +34,7 @@
               </a>
             </div>
           <div class="col-auto">
-            {% if lesson.order|add:1 < lesson.course.lessons_count %}
+            {% if lesson.order|add:1 <= lesson.course.lessons_count %}
             <a href="{{ lesson.order|add:1 }}">
               <button class="btn btn-primary">
                 {% trans "Next" %} <i class="bi bi-arrow-right"></i>
