@@ -168,3 +168,60 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(hour=2, minute=0),  # Everyday in 02:00
     },
 }
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(message)s",
+        },
+        "simple": {
+            "format": "%(levelname)s %(message)s",
+        },
+        "json": {
+            "format": '{"time": "%(asctime)s", "level": "%(levelname)s", "message": "%(message)s", "module": "%(module)s", "lineno": %(lineno)d}',
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, "logs/django.log"),
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 5,
+            "formatter": "json",
+        },
+        "celery": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, "logs/celery.log"),
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 5,
+            "formatter": "json",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "celery": {
+            "handlers": ["celery", "console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}
