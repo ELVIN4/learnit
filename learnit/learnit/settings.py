@@ -33,6 +33,9 @@ DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost"])
 
+CSRF_TRUSTED_ORIGINS = [
+    # domain
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -153,6 +156,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATIC_ROOT = "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

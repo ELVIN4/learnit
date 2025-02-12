@@ -14,7 +14,7 @@
                 <ul class="postcard__tagbox">
                     <li class="tag__item">№{{ lesson.order }}</li>
                     <li class="tag__item"><i class="bi bi-binoculars"> </i>{{ lesson.views|intcomma }}</li>
-                    <li class="tag__item">{{ lesson.duration|seconds_to_minutes }} min</li>
+                    <li class="tag__item"><i class="bi bi-clock"> </i>{{ lesson.duration|seconds_to_minutes }} min</li>
                     <li class="tag__item play blue">
                         <a href="{% url 'lesson' course.slug  lesson.order %}"><i class="bi bi-play"> </i>{% trans "Start lesson" %}</a>
                     </li>
