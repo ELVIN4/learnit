@@ -21,7 +21,7 @@ if (savedContent) {
   quill.root.innerHTML = savedContent;
 }
 else {
-    quill.root.innerHTML = "Notepad...";
+    quill.root.innerHTML = "Take notes here, and they'll be stored for later...";
 }
 // Сохраняем в localStorage при каждом изменении
 quill.on('text-change', function() {

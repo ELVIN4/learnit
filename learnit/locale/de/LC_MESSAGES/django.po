@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 02:42+0100\n"
+"POT-Creation-Date: 2025-02-13 21:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: courses/mixins/breadcrumbs_mixin.py:15
-#: courses/templates/courses/includes/footer.html:14
+#: courses/templates/courses/includes/footer.html:21
 msgid "Home"
 msgstr "Startseite"
+
+#: courses/templates/404.html:8
+msgid "Page not found"
+msgstr ""
+
+#: courses/templates/500.html:7
+msgid "Something went wrong :/"
+msgstr ""
 
 #: courses/templates/courses/all_categories.html:9
 msgid "All categories"
@@ -35,29 +43,44 @@ msgstr "Kategorie suchen..."
 msgid "Courses by:"
 msgstr "Kurse von:"
 
-#: courses/templates/courses/base.html:48
-#: courses/templates/courses/includes/footer.html:16
+#: courses/templates/courses/base.html:49
+#, python-format
+msgid ""
+"\n"
+"            This is a %(state)s version %(version)s. Many features are still "
+"in development, \n"
+"            and data security is not guaranteed. Follow updates on\n"
+"            "
+msgstr ""
+"\n"
+"            Dies ist eine %(state)s Version %(version)s. Viele Funktionen befinden sich noch "
+"in der Entwicklung, \n"
+"            und die Datensicherheit ist nicht garantiert. Folgen Sie den Updates auf\n"
+"            "
+
+#: courses/templates/courses/base.html:58
+#: courses/templates/courses/includes/footer.html:23
 #: courses/templates/courses/includes/header.html:14
 msgid "Categories"
 msgstr "Kategorien"
 
-#: courses/templates/courses/base.html:64
+#: courses/templates/courses/base.html:74
 msgid "Watch until the end to hide the video"
 msgstr "Schau bis zum Ende, um das Video zu verbergen"
 
-#: courses/templates/courses/base.html:70
+#: courses/templates/courses/base.html:80
 msgid "Popular"
 msgstr "Beliebt"
 
-#: courses/templates/courses/base.html:71
+#: courses/templates/courses/base.html:81
 msgid "Most popular courses by average number of views"
 msgstr "Die beliebtesten Kurse nach durchschnittlicher Anzahl von Aufrufen"
 
-#: courses/templates/courses/base.html:79
+#: courses/templates/courses/base.html:89
 msgid "New"
 msgstr "Neu"
 
-#: courses/templates/courses/base.html:80
+#: courses/templates/courses/base.html:90
 msgid "Courses with new lessons"
 msgstr "Kurse mit neuen Lektionen"
 
@@ -73,42 +96,41 @@ msgstr "Kurs starten"
 msgid "About"
 msgstr "Über uns"
 
-#: courses/templates/courses/includes/footer.html:9
+#: courses/templates/courses/includes/footer.html:10
 msgid ""
-"YouTube offers a vast collection of educational courses, but it's not always "
-"the most convenient platform for learning. LearnIT is specifically designed "
-"to streamline the learning process, making it easier and more efficient. "
-"We're constantly looking for ways to improve, so if you have any ideas or "
-"suggestions, feel free to share. Your feedback is valuable and helps us "
-"enhance the platform to better serve your needs."
+"\n"
+"            YouTube offers a vast collection of educational courses, \n"
+"            but it's not always the most convenient platform for learning. \n"
+"            LearnIT is specifically designed to streamline the learning "
+"process, \n"
+"            making it easier and more efficient. \n"
+"            "
 msgstr ""
+"\n"
 "Auf YouTube gibt es eine riesige Sammlung von Bildungskursen, aber es ist "
 "nicht immer die bequemste Plattform für das Lernen. LearnIT wurde speziell "
 "entwickelt, um den Lernprozess zu vereinfachen und effizienter zu gestalten. "
-"Wir suchen ständig nach Möglichkeiten zur Verbesserung, also zögern Sie "
-"nicht, Ihre Ideen oder Vorschläge zu teilen. Ihr Feedback ist wertvoll und "
-"hilft uns, die Plattform zu verbessern, um Ihre Bedürfnisse besser zu "
-"erfüllen."
 
-#: courses/templates/courses/includes/footer.html:12
+
+#: courses/templates/courses/includes/footer.html:19
 msgid "Navigation"
 msgstr "Navigation"
 
-#: courses/templates/courses/includes/footer.html:15
+#: courses/templates/courses/includes/footer.html:22
 #: courses/templates/courses/includes/header.html:20
 msgid "Account"
 msgstr "Konto"
 
-#: courses/templates/courses/includes/footer.html:17
+#: courses/templates/courses/includes/footer.html:24
 #: courses/templates/courses/includes/header.html:17
 msgid "History"
 msgstr "Verlauf"
 
-#: courses/templates/courses/includes/footer.html:21
+#: courses/templates/courses/includes/footer.html:28
 msgid "Open source"
 msgstr "Open Source"
 
-#: courses/templates/courses/includes/footer.html:22
+#: courses/templates/courses/includes/footer.html:29
 msgid ""
 "The project is developed under the MIT License, and the source code is "
 "available on"
@@ -124,7 +146,7 @@ msgstr "Kurs suchen..."
 msgid "Search"
 msgstr "Suchen"
 
-#: courses/templates/courses/includes/lesson_card.html:19
+#: courses/templates/courses/includes/lesson_card.html:18
 msgid "Start lesson"
 msgstr "Lektion starten"
 

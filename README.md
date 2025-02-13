@@ -33,7 +33,7 @@ LearnIT is designed to improve your learning experience on YouTube by making it 
 - **yt-dlp**: Automatically parsing YouTube courses.
 - **YouTube Iframe API**: Embedding and controlling YouTube videos directly within the application.
 
-### In Development
+### Soon
 
 - **Docker & Docker Compose**: Simplify the deployment process.
 - **CI/CD**: Automated testing and deployment pipeline.

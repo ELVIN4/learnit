@@ -16,7 +16,7 @@
                     </time>
                 </div>
                 <div class="postcard__bar"></div>
-                <div class="postcard__preview-txt">{{ course.description|truncatewords:25 }}</div>
+                <div class="postcard__preview-txt">{{ course.description|truncatewords:10 }}</div>
                 <ul class="postcard__tagbox">
                     <a href="{% url 'category' course.category.slug %}">
                         <li class="tag__item">{{ course.category.name }}</li>

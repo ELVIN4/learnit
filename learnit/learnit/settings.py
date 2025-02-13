@@ -33,9 +33,7 @@ DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost"])
 
-CSRF_TRUSTED_ORIGINS = [
-    # domain
-]
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[""])
 # Application definition
 
 INSTALLED_APPS = [
@@ -163,8 +161,8 @@ STATIC_ROOT = "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CELERY_BROKER_URL = "amqp://localhost"
-CELERY_RESULT_BACKEND = "rpc://"
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
 
 CELERY_BEAT_SCHEDULE = {
     "all_courses_updater": {
