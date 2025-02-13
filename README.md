@@ -19,6 +19,7 @@ LearnIT is designed to improve your learning experience on YouTube by making it 
 - **Progress Tracking**: Easily track your learning progress across courses.
 - **Task Scheduling**: Background processing of tasks for smooth performance.
 - **Caching**: Enhanced speed and performance with Redis-based caching.
+- **Responsive Design**: Mobile-friendly design for an optimal experience across all devices.
 
 ## Stack
 
@@ -29,6 +30,8 @@ LearnIT is designed to improve your learning experience on YouTube by making it 
 - **PostgreSQL**: A powerful and reliable relational database.
 - **Ruff**: Formatting tool to maintain clean code.
 - **Poetry**: For managing dependencies and virtual environments.
+- **yt-dlp**: Automatically parsing YouTube courses.
+- **YouTube Iframe API**: Embedding and controlling YouTube videos directly within the application.
 
 ### In Development
 
