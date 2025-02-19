@@ -1,14 +1,26 @@
-from django.shortcuts import get_object_or_404
-from django.http import Http404
 from django.views.generic import TemplateView, ListView, DetailView
-from django.urls import reverse
-from django.utils.translation import get_language
-from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.core.cache import cache
-from .models import Course, Category, Lesson, Language
+from django.utils.translation import get_language
+from django.urls import reverse
+
 from .mixins.breadcrumbs_mixin import BreadcrumbsMixin
+from .models import Course
+from .services.lesson_service import get_lessons_for_course, get_lesson
+from .services.search_service import search_categories_and_courses
+from .services.category_service import (
+    get_top_categories_by_language,
+    get_category_with_subcategories,
+    get_category_with_parent_category,
+    get_all_categories,
+)
+from .services.course_service import (
+    get_courses_by_author,
+    get_courses_in_category,
+    get_new_courses,
+    get_popular_courses,
+    get_courses_by_language,
+)
 
 
 class MainPage(TemplateView):
@@ -25,7 +37,6 @@ class MainPage(TemplateView):
 
     template_name = "courses/base.html"
 
-    # Cache for 25 minutes with a unique key for each language
     @method_decorator(
         cache_page(
             60 * 25,
@@ -37,20 +48,13 @@ class MainPage(TemplateView):
 
     def get_context_data(self, **kwargs):
         current_language_code = get_language()
-        current_language = get_object_or_404(Language, code=current_language_code)
+        courses = get_courses_by_language(current_language_code)
+        categories = get_top_categories_by_language(current_language_code)
 
-        courses = Course.objects.filter(language=current_language, is_published=True)
-        categories = Category.objects.filter(
-            parent_category=None,
-            language=current_language,
-            is_published=True,
-        ).order_by("-priority")[:20]  # top 20 categories that have no parent category
-
-        popular_courses = courses.order_by("-average_views")[:5]
-        new_courses = courses.order_by("-modified_date")[:5]
+        popular_courses = get_popular_courses(courses)
+        new_courses = get_new_courses(courses)
 
         context = super().get_context_data(**kwargs)
-
         context.update(
             {
                 "courses": courses,
@@ -74,65 +78,46 @@ class CategoryPage(BreadcrumbsMixin, ListView):
     The categories are cached for 25 minutes.
     """
 
-    model = Course
     template_name = "courses/category.html"
     context_object_name = "courses"
     paginate_by = 50
 
     def get_queryset(self):
-        category = get_object_or_404(Category, slug=self.kwargs["category"])
-        child_categories = Category.objects.filter(parent_category=category)
-        subcategories_cache_key = f"category_{category.slug}_all_subcategories"
-        subcategories = cache.get(subcategories_cache_key)
-
-        if not subcategories:
-            subcategories = self.get_all_subcategories(category)
-            cache.set(
-                subcategories_cache_key, subcategories, timeout=60 * 240
-            )  # 240 minutes
-
-        cache_key = f"category_{category.slug}_page_{self.paginate_by}_lang_{get_language()}_{self.request.GET.get('page', 1)}"
-        queryset = cache.get(cache_key)
-
-        if not queryset:
-            queryset = (
-                Course.objects.filter(
-                    Q(category=category) | Q(category__in=subcategories)
-                )
-                .filter(is_published=True)
-                .order_by(
-                    "-priority",
-                    "-average_views",
-                    "-modified_date",
-                )
-            )
-            cache.set(cache_key, queryset, timeout=60 * 25)
-
+        category_slug = self.kwargs["category"]
+        category, subcategories = get_category_with_subcategories(category_slug)
         self.category = category
-        self.child_categories = child_categories
+        self.child_categories = get_category_with_parent_category(
+            parent_category=category
+        )
 
-        return queryset
+        return get_courses_in_category(
+            category,
+            subcategories,
+            self.paginate_by,
+            self.request.GET.get("page", 1),
+            get_language(),
+            cache_timeout=60 * 25,
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        context["category"] = self.category
-        context["child_categories"] = self.child_categories
-
-        context["breadcrumbs"] = self.get_breadcrumbs()
+        context.update(
+            {
+                "category": self.category,
+                "child_categories": self.child_categories,
+                "breadcrumbs": self.get_breadcrumbs(),
+            }
+        )
 
         return context
 
     def get_breadcrumbs(self):
         breadcrumbs = super().get_breadcrumbs()
-
         categories = [self.category]
-
         parent_category = self.category.parent_category
+
         while parent_category:
-            categories.insert(
-                0, parent_category
-            )  # Inserted at the beginning to make them closer to the current category
+            categories.insert(0, parent_category)
             parent_category = parent_category.parent_category
 
         for category in categories:
@@ -143,14 +128,6 @@ class CategoryPage(BreadcrumbsMixin, ListView):
                 }
             )
         return breadcrumbs
-
-    def get_all_subcategories(self, category):
-        subcategories = [category]
-        children = Category.objects.filter(parent_category=category, is_published=True)
-        for child in children:
-            subcategories.extend(self.get_all_subcategories(child))  # recurcive shit
-
-        return subcategories
 
 
 class CoursePage(DetailView):
@@ -172,53 +149,24 @@ class CoursePage(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         course = self.object
+        context["lessons"] = get_lessons_for_course(course)
 
-        cache_key = f"lessons_for_course_{course.slug}"
-        lessons = cache.get(cache_key)
-
-        if not lessons:
-            lessons = Lesson.objects.filter(Q(course=course) & Q(is_published=True))
-            cache.set(cache_key, lessons, timeout=60 * 25)
-
-        context["lessons"] = lessons
         return context
 
 
-class LessonPage(DetailView):
-    """
-    This class handles the display of a specific lesson within a course, identified by its order.
-
-    It retrieves the lesson based on the provided course slug and lesson order.
-
-    The lesson is cached for 25 minutes. If the lesson is not found, a 404 error is raised.
-    """
-
-    model = Lesson
+class LessonPage(TemplateView):
     template_name = "courses/lesson.html"
     context_object_name = "lesson"
     slug_url_kwarg = "course_slug"
     slug_field = "course__slug"
 
-    def get_queryset(self):
-        course_slug = self.kwargs["course_slug"]
-        lesson_order = self.kwargs["lesson_order"]
-
-        cache_key = f"lesson_{course_slug}_{lesson_order}"
-        lesson = cache.get(cache_key)
-
-        if not lesson:
-            lesson = Lesson.objects.filter(
-                course__slug=course_slug, order=lesson_order
-            ).first()
-            if not lesson:
-                raise Http404()
-
-            cache.set(cache_key, lesson, timeout=60 * 25)
-
-        return Lesson.objects.filter(course__slug=course_slug, order=lesson_order)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        course_slug = self.kwargs["course_slug"]
+        lesson_order = self.kwargs["lesson_order"]
+        lesson = get_lesson(course_slug, lesson_order, cache_timeout=60 * 25)
+        context["lesson"] = lesson
+
         return context
 
 
@@ -233,31 +181,18 @@ class AuthorPage(ListView):
     The courses are cached for 25 minutes.
     """
 
-    model = Course
     template_name = "courses/author.html"
     context_object_name = "courses"
     paginate_by = 50
 
     def get_queryset(self):
         author_id = self.kwargs["author_id"]
-
-        cache_key = f"author_courses_{author_id}_page_{self.request.GET.get('page', 1)}"
-        courses = cache.get(cache_key)
-
-        if not courses:
-            courses = Course.objects.filter(
-                Q(author_id=author_id) & Q(is_published=True)
-            ).order_by("-priority")
-            if not courses.exists():
-                raise Http404()
-
-            cache.set(cache_key, courses, timeout=60 * 25)
-
-        return courses
+        return get_courses_by_author(
+            author_id, self.request.GET.get("page", 1), cache_timeout=60 * 25
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context["author_page"] = True
         return context
 
@@ -271,26 +206,13 @@ class AllCategoriesPage(ListView):
     The courses are cached for 25 minutes.
     """
 
-    model = Category
     template_name = "courses/all_categories.html"
     context_object_name = "categories"
 
     def get_queryset(self):
-        current_language_code = get_language()
-        cache_key = f"all_categories_{current_language_code}"
-        cached_categories = cache.get(cache_key)
-
-        if not cached_categories:
-            current_language = get_object_or_404(Language, code=current_language_code)
-            cached_categories = Category.objects.filter(
-                Q(is_published=True) & Q(language=current_language)
-            ).order_by("-priority", "-parent_category")
-            cache.set(cache_key, cached_categories, timeout=60 * 25)
-
-        return cached_categories
+        return get_all_categories(get_language())
 
 
-# TO DO use elasticsearch
 class SearchPage(ListView):
     template_name = "courses/search.html"
 
@@ -299,25 +221,14 @@ class SearchPage(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_language_code = get_language()
 
         query = self.request.GET.get("q", "")
 
-        context["categories"] = Category.objects.filter(
-            Q(name__icontains=query)
-            & Q(language__code=current_language_code)
-            & Q(is_published=True)
-        ).order_by("-priority")
+        categories, courses = search_categories_and_courses(query)
 
-        context["courses"] = Course.objects.filter(
-            Q(name__icontains=query)
-            & Q(language__code=current_language_code)
-            & Q(is_published=True)
-        ).order_by("-priority", "-average_views")
-
-        context["result_count"] = (
-            context["categories"].count() + context["courses"].count()
-        )
+        context["categories"] = categories
+        context["courses"] = courses
+        context["result_count"] = categories.count() + courses.count()
         context["q"] = query
 
         return context
