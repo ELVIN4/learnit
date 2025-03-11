@@ -24,4 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 ]
 
-urlpatterns += i18n_patterns(path("", include("courses.urls")))
+urlpatterns += i18n_patterns(
+    path("", include("courses.urls")),
+    path("users/", include("users.urls", namespace="users")),
+)

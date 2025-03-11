@@ -15,22 +15,27 @@
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link text-light" href="#">{% trans "History" %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="#">{% trans "Account" %}</a>
                 </li> -->
             </ul>
             <div class="dropdown-center">
                 <button class="btn btn-transparent text-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-translate"></i>
+                    <i class="bi bi-translate"> </i>{% trans 'Language' %}
                 </button>
                 <ul class="dropdown-menu bg-dark">
                   <li><a class="dropdown-item text-light fw-bold" href="/en">🌍 English | ~{% count_courses_by_language 'en' %} <i class="bi bi-database"></i></a></li>
                   <li><a class="dropdown-item text-light fw-bold" href="/de">🌍 Deutsch | ~{% count_courses_by_language 'de' %} <i class="bi bi-database"></i></a></li>
                   <li><a class="dropdown-item text-light fw-bold" href="/ru">🌍 Русский | ~{% count_courses_by_language 'ru' %} <i class="bi bi-database"></i></a></li>
                 </ul>
-              </div>
-
+            </div>
+            <div class="dropdown-center">
+                <button class="btn btn-transparent text-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"> </i>{% trans 'Profile' %}
+                </button>
+                <ul class="dropdown-menu bg-dark">
+                  <li><a href="{% url 'users:login' %}" class="btn btn-outline-primary me-2 ms-2 my-1">{% trans "Sign in" %}</a></li>
+                  <li><a href="" class="btn btn-primary me-2 ms-2">{% trans "Sign up" %}</a></li>
+                </ul>
+            </div>
             <form class="d-flex ms-auto" role="search" method="get" action="{% url 'search' %}">
                 <input class="form-control me-2" type="search" placeholder="{% trans 'Find a course...' %}" aria-label="search-cours" name="q">
                 <button class="btn btn-outline-light" type="submit">{% trans "Search" %}</button>

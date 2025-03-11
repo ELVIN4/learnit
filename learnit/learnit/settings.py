@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_celery_beat",
     "courses.apps.CoursesConfig",
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
