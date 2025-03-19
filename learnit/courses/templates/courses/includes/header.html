@@ -33,8 +33,8 @@
                     <i class="bi bi-person-circle"> </i>{% trans 'Profile' %}
                 </button>
                 <ul class="dropdown-menu bg-dark">
-                  <li><a href="{% url 'users:login' %}" class="btn btn-outline-secondary me-2 ms-2 my-1">{% trans "Sign in" %}</a></li>
-                  <li><a href="" class="btn btn-primary me-2 ms-2">{% trans "Sign up" %}</a></li>
+                  <li><a href="{% url 'users:signin' %}" class="btn btn-outline-secondary me-2 ms-2 my-1">{% trans "Sign in" %}</a></li>
+                  <li><a href="{% url 'users:signup' %}" class="btn btn-primary me-2 ms-2">{% trans "Sign up" %}</a></li>
                 </ul>
             </div>
             {% endblock %}

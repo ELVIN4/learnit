@@ -3,8 +3,8 @@
 
 {% block 'content' %}
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="card border-info text-bg-dark p-4 shadow-lg">
-        <h1 class="my-5 text-center">{% trans 'Have an account?' %}</h1>
+    <div class="card border-warning text-bg-dark p-4 shadow-lg">
+        <h1 class="my-5 text-center">{% trans 'Create your free account' %}</h1>
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
@@ -15,11 +15,10 @@
                 <div class="form-text text-danger">{{ field.errors }}</div>
             </div>
             {% endfor %}
-            <a class="text-secondary">{% trans 'Forgot password?' %}</a>
             <br>
 
-            <button type="submit" class="btn btn-primary w-100 rounded-pill my-3">{% trans 'Sign in' %}</button>
-            <p>{% trans 'New to LearnIT?' %} <a href="{% url 'users:signup' %}" class="text-warning">{% trans 'Create an account' %}</a></p>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill my-3">{% trans 'Sign up' %}</button>
+            <p>{% trans 'Have an account?' %} <a href="{% url 'users:signin' %}" class="text-warning">{% trans 'Sign in' %}</a></p>
         </form>
     </div>
 </div>
