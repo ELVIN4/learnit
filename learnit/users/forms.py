@@ -10,9 +10,14 @@ class LoginUserForm(AuthenticationForm):
         model = get_user_model()
         fields = ["username", "password"]
 
+    def __init__(self, request=..., *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        self.fields["username"].label = _("Login")
+        self.fields["password"].label = _("Password")
+
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label=_("Username"))
+    username = forms.CharField(label=_("Login"))
     password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput())
     password2 = forms.CharField(
         label=_("Repeat password"), widget=forms.PasswordInput()
@@ -28,8 +33,6 @@ class RegisterUserForm(UserCreationForm):
         ]
         labels = {
             "email": "E-Mail",
-            "first_name": "First name",
-            "last_name": "Last name",
         }
 
     def clean_password2(self):
